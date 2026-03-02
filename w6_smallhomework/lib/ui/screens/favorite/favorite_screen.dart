@@ -5,6 +5,7 @@ import '../../../data/repositories/songs/song_repository.dart';
 import '../../../model/songs/song.dart';
 import '../../states/player_state.dart';
 import '../../theme/theme.dart';
+import '../../states/settings_state.dart'; // setting state
 
 class FavoriteScreen extends StatelessWidget {
   const FavoriteScreen({super.key});
@@ -15,12 +16,15 @@ class FavoriteScreen extends StatelessWidget {
     // 1- Read the globbal song repository
     SongRepository songRepository = context.read<SongRepository>();
     List<Song> songs = songRepository.fetchSongs();
+
+    // 2 - Watch the global settings state
+    AppSettingsState settingsState = context.watch<AppSettingsState>();
  
     // 3 - Watch the globbal player state
     PlayerState playerState = context.read<PlayerState>();
 
     return Container(
-      
+      color: settingsState.theme.backgroundColor,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
