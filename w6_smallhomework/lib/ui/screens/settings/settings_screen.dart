@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
- 
+ import 'package:provider/provider.dart'; // add provider
 import '../../../model/settings/app_settings.dart';
 import '../../theme/theme.dart';
+import '../../states/settings_state.dart'; // setting state
 import 'widget/theme_color_button.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -9,8 +10,11 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // watch the global settings state
+    AppSettingsState settingsState = context.watch<AppSettingsState>();
  
     return Container(
+      color: settingsState.theme.backgroundColor, // bg from state
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -32,9 +36,11 @@ class SettingsScreen extends StatelessWidget {
                 .map(
                   (theme) => ThemeColorButton(
                     themeColor: theme,
-                    isSelected: false,
+                    // check if this button matches the current state
+                    isSelected: settingsState.theme == theme,
                     onTap: (value) {
-                      
+                      // update theme
+                      settingsState.changeTheme(value);
                     },
                   ),
                 )
