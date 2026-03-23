@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../../model/songs/song.dart';
 
 class SongTile extends StatelessWidget {
@@ -25,7 +24,15 @@ class SongTile extends StatelessWidget {
         ),
         child: ListTile(
           onTap: onTap,
+          leading: ClipOval(
+            child: Image.network('${song.imageUrl}',
+            width: 45,
+            height: 45,
+            fit: BoxFit.cover,
+            ),
+          ),
           title: Text(song.title),
+          subtitle: Text('${song.duration.inMinutes} mins'),
           trailing: Text(
             isPlaying ? "Playing" : "",
             style: TextStyle(color: Colors.amber),
