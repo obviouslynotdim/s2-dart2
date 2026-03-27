@@ -4,6 +4,7 @@ import '../../../theme/theme.dart';
 import '../../../utils/async_value.dart';
 import '../../../widgets/song/song_tile.dart';
 import '../view_model/library_view_model.dart';
+import '../view_model/song_artist_info.dart';
 
 class LibraryContent extends StatelessWidget {
   const LibraryContent({super.key});
