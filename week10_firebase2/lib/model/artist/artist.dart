@@ -3,16 +3,18 @@ class Artist {
   final String name;
   final String genre;
   final Uri imageUrl;
+  final String? about;
 
   Artist({
     required this.id,
     required this.name,
     required this.genre,
     required this.imageUrl,
+    this.about,
   });
 
   @override
   String toString() {
-    return 'Song(id: $id, name: $name, genre: $genre, genre: $genre)';
+    return 'Artist(id: $id, name: $name, genre: $genre, about: $about)';
   }
 }
