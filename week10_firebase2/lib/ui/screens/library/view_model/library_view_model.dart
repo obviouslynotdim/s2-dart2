@@ -36,7 +36,7 @@ class LibraryViewModel extends ChangeNotifier {
     fetchSong();
   }
 
-  void fetchSong() async {
+  Future<void> fetchSong() async {
     // 1- Loading state
     data = AsyncValue.loading();
     notifyListeners();
@@ -74,4 +74,14 @@ class LibraryViewModel extends ChangeNotifier {
 
   void start(Song song) => playerState.start(song);
   void stop(Song song) => playerState.stop();
+
+  Future<void> likeSong(Song song) async {
+    try {
+      await songRepository.likeSong(song.id, song.likes);
+      await fetchSong();
+    } catch (e) {
+      data = AsyncValue.error(e);
+      notifyListeners();
+    }
+  }
 }
